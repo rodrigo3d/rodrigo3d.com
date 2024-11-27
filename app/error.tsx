@@ -1,21 +1,32 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";
+import { useEffect } from 'react'
 
 export default function Error({
   error,
-  reset,
+  reset
 }: {
-  error: Error;
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   useEffect(() => {
-    console.error(error);
-  }, [error]);
+    console.error(error)
+  }, [error])
 
   return (
-    <div>
-      <p>Oops! Something went wrong... maybe try refreshing?</p>
+    <div className="prose prose-neutral dark:prose-invert">
+      <p>
+        Oops! Something went wrong...{' '}
+        <a
+          className="cursor-pointer"
+          onClick={() => {
+            reset()
+          }}
+        >
+          maybe try refreshing
+        </a>
+        ?
+      </p>
     </div>
-  );
+  )
 }
